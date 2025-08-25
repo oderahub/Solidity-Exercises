@@ -11,7 +11,14 @@ contract BlockNumber {
 
     address public lastCaller;
 
+    
+  uint lastTimeBlockCalled;
     function callMe() external {
         /// your code here
+       require(block.number > lastTimeBlockCalled, "called");
+        lastTimeBlockCalled = block.number;
+       
+       lastCaller = msg.sender;
     }
+   
 }
